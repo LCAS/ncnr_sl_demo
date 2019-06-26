@@ -1,0 +1,9 @@
+<launch> 
+
+  <include file="$(find kinect2_bridge)/launch/kinect2_bridge.launch" />
+  <include file="$(find realsense2_camera)/launch/rs_camera.launch" />
+  <node name="throttle_wrist" pkg="topic_tools" type="throttle" args="messages /camera/color/image_raw 10 /view/wrist" output="screen" />
+  <node name="throttle_scene" pkg="topic_tools" type="throttle" args="messages /kinect2/hd/image_color 10 /view/scene" output="screen" />
+  <node pkg="web_video_server" type="web_video_server" name="web_video_server" output="screen"/>
+
+</launch>
